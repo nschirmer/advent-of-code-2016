@@ -3,8 +3,7 @@ print("What's your puzzle input?")
 directions = input().split(', ') # Split it into an array
 
 # Initialize our X and Y variables
-x = 0
-y = 0
+x, y = 0, 0
 
 # Initialize a compass for us to use
 compass = ('North', 'East', 'South', 'West')
@@ -24,18 +23,15 @@ for direction in directions:
 
     # Take the number of steps from the direction, by grabbing everything
     # after the first char (which we know is either R or L)
-    steps = int(direction[1:])
+    blocks = int(direction[1:])
 
     # Use a dictionary with tuples as a makeshift Switch Case...
     (x, y) = {
-        'North': (x + steps, y),
-        'East': (x, y + steps),
-        'South': (x - steps, y),
-        'West': (x, y - steps)
+        'North': (x + blocks, y),
+        'East': (x, y + blocks),
+        'South': (x - blocks, y),
+        'West': (x, y - blocks)
     }.get(compass[compassNeedle])
 
 # Our final X and Y
-print((x, y))
-
-# Get our total steps by adding the absolute value of X and Y
-print("Total steps: " + str(abs(x) + abs(y)))
+print("Final location: %s which is %d blocks away" % ((x, y), abs(x) + abs(y)))
